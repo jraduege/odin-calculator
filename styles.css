@@ -1,0 +1,63 @@
+#outline {
+    display: flex;
+    flex-direction:column;
+    width: 300px;
+    height:auto;
+}
+
+#display {
+    flex:2;
+    border: solid black 1px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.buts {
+    flex:5;
+    display: flex;
+    border: solid black 1px;
+}
+
+.nonops {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.ops {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ops button {
+    background: goldenrod;
+}
+
+.row button {
+    background: cornflowerblue;
+}
+
+.special button {
+    background: steelblue;
+}
+
+.special, .row {
+    flex: 1;
+    display: flex;
+}
+
+.nada {
+    display: flex;
+    flex: 2.5;
+}
+
+button {
+    font-weight: bolder;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex: 1;
+}
