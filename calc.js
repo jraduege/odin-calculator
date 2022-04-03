@@ -33,7 +33,6 @@ const handleClear = function() {
     display=0;
     textDisplay=0;
     handleUpdateDisplay();
-    console.log("cleared");
 }
 
 const operate = function(op,mem,disp) {
@@ -94,16 +93,13 @@ const handleEqual = function(mem,disp) {
 const handleUpdateDisplay = function() {
     display = Number(textDisplay);
     displayElement.textContent = textDisplay;
-    console.log(display);
 }
 
 const handleNumber = function(e) {
     if (typingNumbers) {
         textDisplay += e.target.innerText;
-        console.log(`concatenating to ${textDisplay}`);
     } else {
         textDisplay = e.target.innerText;
-        console.log(`reseting to ${textDisplay}`);
     }
     typingNumbers = true;
     handleUpdateDisplay();
