@@ -116,7 +116,7 @@ const handleOp = function(e) {
             handleDivBy(memory,display);
             break;
         case "multiply":
-            handleTimes(memory,dsiplay);
+            handleTimes(memory,display);
             break;
         case "subtract":
             handleMinus(memory,display);
@@ -137,6 +137,18 @@ const handleDecimal = function(e) {
     textDisplay += ".";
 }
 
+const handlePlusMinus = function(e) {
+    display = -display;
+    textDisplay = display.toString();
+    handleUpdateDisplay();
+}
+
+const handlePercent = function() {
+    display = display / 100;
+    textDisplay = display.toString();
+    handleUpdateDisplay();
+}
+
 const numButs = document.querySelectorAll(".num");
 numButs.forEach(button => {
     button.addEventListener("click",handleNumber);
@@ -152,5 +164,11 @@ allClear.addEventListener("click",handleClear);
 
 const decimal = document.querySelector(".point");
 decimal.addEventListener("click",handleDecimal);
+
+const plusMinus = document.querySelector(".reverse");
+plusMinus.addEventListener("click", handlePlusMinus);
+
+const percent = document.querySelector(".percent");
+percent.addEventListener("click", handlePercent);
 
 handleUpdateDisplay();
