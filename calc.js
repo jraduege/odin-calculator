@@ -84,10 +84,11 @@ const handleDivBy = function(mem,disp) {
 const handleEqual = function(mem,disp) {
     let result=operate(lastOp,mem,disp);
     display=result;
+    textDisplay = display.toString();
     memory=display;
     lastOp="";
-    newStart = true;
-    typingNumbers = true;
+    typingNumbers = false;
+    handleUpdateDisplay();
 }
 
 const handleUpdateDisplay = function() {
@@ -109,7 +110,26 @@ const handleNumber = function(e) {
  }
 
 const handleOp = function(e) {
-    console.log(e.target);
+    let func = e.target.dataset.func;
+    switch (func) {
+        case "divide":
+            handleDivBy(memory,display);
+            break;
+        case "multiply":
+            handleTimes(memory,dsiplay);
+            break;
+        case "subtract":
+            handleMinus(memory,display);
+            break;
+        case "add":
+            handlePlus(memory,display);
+            break;
+        case "equals":
+            handleEqual(memory,display);
+            break;
+        default:
+            alert("Something has gone wrong in handleOp");
+    }
 }
 
 const handleDecimal = function(e) {
