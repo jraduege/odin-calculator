@@ -1,8 +1,10 @@
 let newStart = true;
-let typingNumbers = true;
+let typingNumbers = false;
 let memory=0;
 let display=0;
+let textDisplay="0"
 let lastOp=""
+const displayElement = document.querySelector("#display");
 
 const add = function(first,second) {
     return first + second;
@@ -29,6 +31,9 @@ const handleClear = function() {
     newStart = true;
     memory=0;
     display=0;
+    textDisplay=0;
+    handleUpdateDisplay();
+    console.log("cleared");
 }
 
 const operate = function(op,mem,disp) {
@@ -86,6 +91,46 @@ const handleEqual = function(mem,disp) {
 }
 
 const handleUpdateDisplay = function() {
+    display = Number(textDisplay);
+    displayElement.textContent = textDisplay;
     console.log(display);
 }
 
+const handleNumber = function(e) {
+    if (typingNumbers) {
+        textDisplay += e.target.innerText;
+        console.log(`concatenating to ${textDisplay}`);
+    } else {
+        textDisplay = e.target.innerText;
+        console.log(`reseting to ${textDisplay}`);
+    }
+    typingNumbers = true;
+    handleUpdateDisplay();
+ }
+
+const handleOp = function(e) {
+    console.log(e.target);
+}
+
+const handleDecimal = function(e) {
+    if (textDisplay.includes(".")) return;
+    textDisplay += ".";
+}
+
+const numButs = document.querySelectorAll(".num");
+numButs.forEach(button => {
+    button.addEventListener("click",handleNumber);
+});
+
+const opButs = document.querySelectorAll(".op");
+    opButs.forEach(button => {
+    button.addEventListener("click",handleOp);
+});
+
+const allClear = document.querySelector(".clear");
+allClear.addEventListener("click",handleClear);
+
+const decimal = document.querySelector(".point");
+decimal.addEventListener("click",handleDecimal);
+
+handleUpdateDisplay();
